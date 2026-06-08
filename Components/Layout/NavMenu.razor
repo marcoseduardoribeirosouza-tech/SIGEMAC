@@ -1,0 +1,43 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <img class="logo-sidebar" src="https://img.notionusercontent.com/s3/prod-files-secure%2Fde87a996-7550-81d9-bf4a-00035caea21b%2F758ef1af-4406-409f-a0ce-6c0bfbf5ac4e%2F4.png/size/w=2000?exp=1780972896&sig=gdQGg2S1LTgD2hwvXT5TGawd6E9s-Oq6eyHyREpgevE&imgBuildSrc=presignImageUrl&id=3337a996-7550-8034-8704-d19a4e218efa&table=block&userId=cdab6d99-6218-4247-8eeb-5d0f6aeb4130&mtd=com" alt="logo" />
+        <a class="navbar-brand" href="">SIGEMAC</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-dashboard-door-fill-nav-menu" aria-hidden="true"></span> Dashboard
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="estoque">
+                <span class="bi bi-estoque-square-fill-nav-menu" aria-hidden="true"></span> Estoque
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="cadastros">
+                <span class="bi bi-cadastros-nested-nav-menu" aria-hidden="true"></span> Cadastros
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="vendas">
+                <span class="bi bi-dollar-nested-nav-menu" aria-hidden="true"></span> Vendas
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="registros">
+                <span class="bi bi-registros-nested-nav-menu" aria-hidden="true"></span> Registros
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
