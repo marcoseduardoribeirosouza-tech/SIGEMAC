@@ -1,7 +1,100 @@
 ﻿@page "/estoque"
 
-<PageTitle>Estoque</PageTitle>
+<input type="checkbox" id="controle-modal" class="modal-hidden">
 
-<h1>Estoque</h1>
+<div class="container">
+    <div class="cabecalho">
+        <h1>Estoque</h1>
+        <label for="controle-modal" class="botao-cadastrar">+ Cadastrar Produto</label>
+    </div>
 
-Welcome to your new app.
+    <div class="busca">
+        <input type="text" placeholder="Buscar produtos...">
+    </div>
+
+    <div class="grid-produtos">
+
+        <div class="card">
+            <div class="card-texto">
+                <span class="quantidade">50</span>
+                <h3>Porcelanato</h3>
+                <span class="preco">R$ 32,99</span>
+            </div>
+            <button class="botao-solicitar">Solicitar material</button>
+        </div>
+
+        <div class="card">
+            <div class="card-texto">
+                <span class="quantidade">300.000</span>
+                <h3>Cimentos</h3>
+                <span class="preco">R$ 11,99</span>
+            </div>
+            <button class="botao-solicitar">Solicitar material</button>
+        </div>
+
+        <div class="card">
+            <div class="card-texto">
+                <span class="quantidade">300.000</span>
+                <h3>Pedra de Calçamento</h3>
+                <span class="preco">R$ 11,99</span>
+            </div>
+            <button class="botao-solicitar">Solicitar material</button>
+        </div>
+
+        <div class="card">
+            <div class="card-texto">
+                <span class="quantidade">50</span>
+                <h3>Telha</h3>
+                <span class="preco">R$ 32,99</span>
+            </div>
+            <button class="botao-solicitar">Solicitar material</button>
+        </div>
+
+        <div class="card">
+            <div class="card-texto">
+                <span class="quantidade">300.000</span>
+                <h3>Arame</h3>
+                <span class="preco">R$ 11,99</span>
+            </div>
+            <button class="botao-solicitar">Solicitar material</button>
+        </div>
+
+        <div class="card">
+            <div class="card-texto">
+                <span class="quantidade">300.000</span>
+                <h3>Kit de Ferramentas</h3>
+                <span class="preco">R$ 199,99</span>
+            </div>
+            <button class="botao-solicitar">Solicitar material</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal-fundo">
+    <div class="modal-janela">
+
+        <div class="modal-topo">
+            <input type="text" placeholder="Item" class="input-titulo">
+        </div>
+
+        <div class="modal-conteudo">
+            <div class="coluna-esquerda">
+                <div class="quadrado-imagem">Imagem</div>
+                <input type="text" placeholder="ID: 01" readonly class="input-desativado">
+                <input type="text" placeholder="Quantidade" class="input-padrao">
+                <input type="text" placeholder="Preço da unidade" class="input-padrao">
+            </div>
+
+            <div class="coluna-direita">
+                <textarea placeholder="Descrição do item" class="input-textarea"></textarea>
+            </div>
+        </div>
+
+        <div class="modal-botoes">
+            <label for="controle-modal" class="btn-salvar">Salvar</label>
+            <label for="controle-modal" class="btn-excluir">Excluir</label>
+        </div>
+
+    </div>
+</div>
