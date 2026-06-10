@@ -20,6 +20,8 @@ main {
     height: 100px;
     display: flex;
     align-items: center;
+    position: sticky;
+    top: 0;
 }
 
     .top-row ::deep a, .top-row ::deep .btn-link {

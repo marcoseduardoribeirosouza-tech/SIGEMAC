@@ -2,16 +2,31 @@
 }
 
 .pagina-total {
-    background-color: #FFFAF9;
-    margin: 0 0 0 0;
+    display: grid;
+    gap: 20px;
+    justify-content: center;
 }
 
-.data-e-hora .cards {
+h1{
+    text-align: center;
+}
+
+h2{
+    padding: 10px;
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+
+.cards {
     display: flex;
-    padding: 50px;
+    gap: 10px;
+    padding: 10px;
 }
 
-.card-data, .card-hora{
+.mini-card {
     display: flex;
     border-radius: 15px;
     flex-direction: column;
@@ -22,6 +37,13 @@
     width: 240px;
 }
 
+.big-card {
+    background-color: #B3B3B3;
+    border-radius: 15px;
+    padding: 10px;
+    width: 50vh;
+}
+
 .dropbtn {
     background-color: #FFFAF9;
     color: black;
@@ -29,7 +51,6 @@
     font-size: 16px;
     border: none;
     width: 150px;
-
 }
 
 .dropdown {
