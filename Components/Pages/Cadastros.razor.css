@@ -1,0 +1,63 @@
+.cabeçalho { 
+    display: flex;
+    justify-content: space-between;
+}
+
+.area {
+    margin: 50px;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    background: #f4f4f4;
+}
+
+.cadastrar-cliente { 
+    background-color: #e0e0e0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+}
+
+.cadastrar-cliente:hover{ 
+    background-color: #adadad;
+}
+
+.lista { 
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.lista h5 { 
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.cliente { 
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.cliente p { 
+    color: grey;
+    margin: 0;
+}
+
+.cliente:last-child { 
+    border-bottom: none;
+}
+
+.cliente:hover {
+    background-color: #adadad;
+}
+
+
+
+
+
+
+
+
