@@ -1,0 +1,44 @@
+﻿.cabeçalho {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/*.container {
+    margin: 50px;
+    padding: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+}*/
+
+.lista {
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+    .lista h5 {
+        padding: 10px;
+        border-bottom: 1px solid gray;
+    }
+
+.vendas {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+    .vendas p {
+        color: grey;
+        margin: 0;
+    }
+    .vendas:last-child {
+        border-bottom: none;
+    }
+
+    .vendas:hover {
+        background-color: #adadad;
+    }

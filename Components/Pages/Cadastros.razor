@@ -4,43 +4,96 @@
 
 <div class="container">
 
-    <h1> Cadastros </h1> 
+	<h1> Cadastros </h1>
 
-    <div class="area">
-        <div class="clientes">
+	<div class="area">
+		<div class="clientes">
 
-            <div class="cabeçalho">
-                <h2> Clientes </h2>
-                <label class="cadastrar-cliente">Cadastrar Cliente</label> 
-            </div>
+			<div class="cabecalho">
+				<h2> Clientes </h2>
+				<label class="cadastrar-cliente">Cadastrar Cliente</label>
+			</div>
 
-            <div class="lista">
-                
-                <h5> Clientes Cadastrados </h5>  
-            
-                <div class="cliente">
-                <h6> ID: 1 - Cliente: João Silva </h6>
-                <p> telefone: 0002-4531 - cpf: 000.000.000-22 </p>
-                </div>
+			<div class="lista">
 
-                <div class="cliente">
-                <h6> ID: 2 - Cliente: Miguel Tavares </h6>
-                <p> telefone: 0002-5465 - cpf: 000.000.000-33 </p>
-                </div>
+				<h5> Clientes Cadastrados </h5>
 
-                <div class="cliente">
-                <h6> ID: 1 - Cliente: kalebe Santos </h6>
-                <p> telefone: 0002-3579 - cpf: 000.000.000-44 </p>
-                </div>
+				<div class="cliente">
+					<h6> ID: 1 - Cliente: João Silva </h6>
+					<p> telefone: 0002-4531 - cpf: 000.000.000-22 </p>
+				</div>
 
-            </div>
-          
-            
+				<div class="cliente">
+					<h6> ID: 2 - Cliente: Miguel Tavares </h6>
+					<p> telefone: 0002-5465 - cpf: 000.000.000-33 </p>
+				</div>
 
-        </div>
-    
+				<div class="cliente">
+					<h6> ID: 1 - Cliente: kalebe Santos </h6>
+					<p> telefone: 0002-3579 - cpf: 000.000.000-44 </p>
+				</div>
+			</div>
+		</div>
 
-        
-    </div>
+		<div class="entregadores">
+			<div class="cabeçalho">
+				<h2>Entregadores</h2>
+				<label for="modal-open" class="cadastrar-entregador"> Cadastrar Entregador </label>
+			</div>
 
+			<div class="lista-entrega">
+				<h5>Entregadores Cadastrados </h5>
+
+				<div class="entregador">
+					<h6>ID: 1 - Entregador: Jubileu </h6>
+					<p>Telefone: 9303-8912 - cpf: 021.342.450-94 </p>
+				</div>
+
+				<div class="entregador">
+					<h6>ID: 2 - Entregador: Osvaldo </h6>
+					<p>Telefone: 9903-6421 - cpf: 023.351.494-82 </p>
+				</div>
+
+				<div class="entregador">
+					<h6>ID: 3 - Entregador: Eduardo </h6>
+					<p>Telefone: 9913-4432 - cpf: 022.355.409-89 </p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<input type="checkbox" id="modal-open" class="modal-close"/>
+	<div class="modal-base">
+
+		<div class="modal-dados">
+			<div class="modal-info">
+				<p>Nome:</p>
+				<input type="text" placeholder="Nome" />
+				<p>ID:</p>
+				<input type="number" placeholder="ID" />
+				<p>Data de Nascimento:</p>
+				<input type="date" placeholder="Data de Nascimento" />
+				<p>Detalhes:</p>
+				<textarea placeholder=" Detalhes"></textarea>
+				</div>
+
+			<div class="modal-info">
+				<p>CNH:</p>
+				<input type="text" placeholder="CNH" />
+				<p>Telefone:</p>
+				<input type="text" placeholder="Telefone" />
+				<p>E-mail:</p>
+				<input type="text" placeholder="E-mail" />
+				<p>CPF:</p>
+				<input type="text" placeholder="CPF" />
+				<p>Data de Cadastro:</p>
+				<input type="date" placeholder="Data de Cadastro" />
+			</div>
+
+			<div class="modal-botoes">
+				<label class="Salvar" onclick="Salvar">Salvar</label>
+				<label for="modal-open" class="Cancelar" onclick="Cancelar">Cancelar</label>
+			</div>
+		</div>
+	</div>
 </div>
