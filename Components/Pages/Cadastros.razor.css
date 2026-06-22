@@ -63,10 +63,12 @@
     font-size: 14px;
     border: 1px solid #ccc;
     margin-bottom: 8px;
+    justify-content: end;
 }
-.cadastrar-entregador:hover{
-    background-color: #adadad;
-}
+
+    .cadastrar-entregador:hover {
+        background-color: #adadad;
+    }
 
 .lista-entrega {
     border: 1px solid gray;
@@ -75,8 +77,8 @@
 }
 
     .lista-entrega h5 {
-    padding: 10px;
-    border-bottom: 1px solid gray;
+        padding: 10px;
+        border-bottom: 1px solid gray;
     }
 
 .entregador {
@@ -97,9 +99,9 @@
         border-bottom: none;
     }
 
-    .modal-close{
-        display:none;
-    }
+.modal-close {
+    display: none;
+}
 
 .modal-base {
     position: fixed;
@@ -108,10 +110,10 @@
     width: 100%;
     height: 100%;
     display: none;
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
-    z-index: 1000; 
+    z-index: 1000;
 }
 
 .modal-close:checked ~ .modal-base {
@@ -119,7 +121,7 @@
     opacity: 1;
     pointer-events: auto;
 }
-   
+
 .modal-dados {
     max-width: 600px;
     margin: 0px auto;
@@ -202,4 +204,3 @@
     .Salvar:hover {
         background-color: #336b28;
     }
-    
