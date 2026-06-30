@@ -62,29 +62,3 @@ p {
     grid-row: 2;
     margin: 0;
 }
-
-/*barra de atalhos*/
-.bar-atalhos {
-    margin-top: 50px;
-    background-color: #eee;
-    height: 100px;
-    padding: 25px;
-    border-radius: 7px;
-}
-
-.atalhos {
-    display: flex;
-    grid-template-columns: auto;
-    gap: 200px;
-}
-
-label {
-    background-color: #f4f4f4;
-    height: 50px;
-    width: 200px;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
