@@ -82,16 +82,16 @@ FOREIGN KEY (Fornecedor_idFornecedor_forn) REFERENCES Fornecedor(idFornecedor_fo
 );
 
 CREATE TABLE Venda (
-idVenda_vend INT AUTO_INCREMENT,
+id_vend INT AUTO_INCREMENT,
 data_registro_vend DATE,
 descricao_vend VARCHAR(45),
-Cliente_idCliente_cli INT,
-Produto_idProduto_pro INT,
-Entregador_idEntregador_entr INT,
+id_cli_fk INT,
+id_pro_fk INT,
+id_entr_fk INT,
 PRIMARY KEY (idVenda_vend),
-FOREIGN KEY (Cliente_idCliente_cli) REFERENCES Cliente(idCliente_cli),
-FOREIGN KEY (Produto_idProduto_pro) REFERENCES Produto(idProduto_pro),
-FOREIGN KEY (Entregador_idEntregador_entr) REFERENCES Entregador(idEntregador_entr)
+FOREIGN KEY (id_cli_fk) REFERENCES Cliente(idCliente_cli),
+FOREIGN KEY (id_pro_fk) REFERENCES Produto(idProduto_pro),
+FOREIGN KEY (id_entr_fk) REFERENCES Entregador(idEntregador_entr)
 );
 
 CREATE TABLE Registro (
@@ -102,7 +102,7 @@ Venda_idVenda_vend INT,
 Entregador_idEntregador_entr INT,
 PRIMARY KEY (idRegistro_reg),
 FOREIGN KEY (Cliente_idCliente_cli) REFERENCES Cliente(idCliente_cli),
-FOREIGN KEY (Venda_idVenda_vend) REFERENCES Venda(idVenda_vend),
+FOREIGN KEY (Venda_idVenda_vend) REFERENCES Venda(id_vend),
 FOREIGN KEY (Entregador_idEntregador_entr) REFERENCES Entregador(idEntregador_entr)
 );
 
