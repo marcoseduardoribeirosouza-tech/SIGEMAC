@@ -6,4 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Configs\Conexao.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Configs\Conexao.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="26.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="banco_de_dados\" />
+  </ItemGroup>
+
 </Project>
