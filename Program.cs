@@ -12,7 +12,7 @@ builder.Services.AddScoped<Conexao>();
 builder.Services.AddScoped<FornecedorDAO>();
 builder.Services.AddScoped<VendaDAO>();
 builder.Services.AddScoped<ClienteDAO>();
-
+builder.Services.AddScoped<EntregadorDAO>();
 
 var app = builder.Build();
 
