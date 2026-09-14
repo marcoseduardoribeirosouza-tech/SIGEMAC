@@ -4,11 +4,11 @@ namespace sigemac.Models
 {
     public class Fornecedor
     {
-        public int Id_forn { get; set; }
-        public string nome_forn { get; set; } = string.Empty;
-        public string cnpj_forn { get; set; } = string.Empty;
-        public string telefone_forn { get; set; } = string.Empty;
-        public string email_forn { get; set; } = string.Empty;
+        public int Id { get; set; }
+        public string Nome { get; set; } = string.Empty;
+        public string Cnpj { get; set; } = string.Empty;
+        public string Telefone { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
 
     }
 }
