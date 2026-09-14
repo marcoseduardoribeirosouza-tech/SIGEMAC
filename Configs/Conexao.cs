@@ -1,9 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
-namespace SIGEMAC.Configs
+
+namespace sigemac.Configs
 {
     public class Conexao
     {
-
         private readonly string _connectionString;
         public Conexao(IConfiguration configuration)
         {
@@ -22,6 +22,5 @@ namespace SIGEMAC.Configs
             conn ??= GetConnection();
             return new MySqlCommand(query, conn);
         }
-
     }
 }

@@ -1,10 +1,13 @@
 using sigemac.Components;
+using sigemac.Configs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<Conexao>();
 
 var app = builder.Build();
 
