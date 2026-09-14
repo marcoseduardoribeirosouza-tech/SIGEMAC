@@ -13,72 +13,72 @@ CREATE DATABASE SIGEMAC;
 USE SIGEMAC;
 
 CREATE TABLE Estado (
-idEstado INT AUTO_INCREMENT,
+id_est INT AUTO_INCREMENT,
 nome_est VARCHAR(45),
 sigla_est VARCHAR(2),
-PRIMARY KEY (idEstado)
+PRIMARY KEY (id_est)
 );
 
 CREATE TABLE Cidade (
-idCidade INT AUTO_INCREMENT,
+id_cid INT AUTO_INCREMENT,
 nome_cid VARCHAR(45),
-Estado_idEstado INT,
-PRIMARY KEY (idCidade),
-FOREIGN KEY (Estado_idEstado) REFERENCES Estado(idEstado)
+id_est_fk INT,
+PRIMARY KEY (id_cid),
+FOREIGN KEY (id_est_fk) REFERENCES Estado(id_est)
 );
 
 CREATE TABLE Endereco (
-idEndereco_end INT AUTO_INCREMENT,
+id_end INT AUTO_INCREMENT,
 numero_end INT,
 logradouro_end VARCHAR(45),
 bairro_end VARCHAR(45),
-Cidade_idCidade INT,
-PRIMARY KEY (idEndereco_end),
-FOREIGN KEY (Cidade_idCidade) REFERENCES Cidade(idCidade)
+id_cid_fk INT,
+PRIMARY KEY (id_end),
+FOREIGN KEY (id_cid_fk) REFERENCES Cidade(id_cid)
 );
 
 CREATE TABLE Cliente (
-idCliente_cli INT AUTO_INCREMENT,
+id_cli INT AUTO_INCREMENT,
 nome_cli VARCHAR(45),
 data_nasc_cli DATE,
 email_cli VARCHAR(45),
 telefone_cli VARCHAR(45),
 observacao_cli VARCHAR(45),
 cpf_cli VARCHAR(11),
-Endereco_idEndereco_end INT,
-PRIMARY KEY (idCliente_cli),
-FOREIGN KEY (Endereco_idEndereco_end) REFERENCES Endereco(idEndereco_end)
+id_end_fk INT,
+PRIMARY KEY (id_cli),
+FOREIGN KEY (id_end_fk) REFERENCES Endereco(id_end)
 );
 
 CREATE TABLE Entregador (
-idEntregador_entr INT AUTO_INCREMENT,
+id_entr INT AUTO_INCREMENT,
 nome_entr VARCHAR(45),
 telefone_entr VARCHAR(45),
 data_nasc_entr DATE,
 cnh_entr VARCHAR(45),
 descricao_entr VARCHAR(45),
-data_cadastro DATE,
-PRIMARY KEY (idEntregador_entr)
+data_cadastro_entr DATE,
+PRIMARY KEY (id_entr)
 );
 
 CREATE TABLE Fornecedor (
-idFornecedor_forn INT AUTO_INCREMENT,
+id_forn INT AUTO_INCREMENT,
 nome_forn VARCHAR(45),
 cnpj_forn VARCHAR(14),
 telefone_forn VARCHAR(45),
 email_forn VARCHAR(45),
-PRIMARY KEY (idFornecedor_forn)
+PRIMARY KEY (id_forn)
 );
 
 CREATE TABLE Produto (
-idProduto_pro INT AUTO_INCREMENT,
+id_pro INT AUTO_INCREMENT,
 nome_pro VARCHAR(45),
 quantidade_pro INT,
 preco_pro DECIMAL(10,2),
 descricao_pro VARCHAR(45),
-Fornecedor_idFornecedor_forn INT,
-PRIMARY KEY (idProduto_pro),
-FOREIGN KEY (Fornecedor_idFornecedor_forn) REFERENCES Fornecedor(idFornecedor_forn)
+id_forn_fk INT,
+PRIMARY KEY (id_pro),
+FOREIGN KEY (id_forn_fk) REFERENCES Fornecedor(id_forn)
 );
 
 CREATE TABLE Venda (
@@ -88,22 +88,22 @@ descricao_vend VARCHAR(45),
 id_cli_fk INT,
 id_pro_fk INT,
 id_entr_fk INT,
-PRIMARY KEY (idVenda_vend),
-FOREIGN KEY (id_cli_fk) REFERENCES Cliente(idCliente_cli),
-FOREIGN KEY (id_pro_fk) REFERENCES Produto(idProduto_pro),
-FOREIGN KEY (id_entr_fk) REFERENCES Entregador(idEntregador_entr)
+PRIMARY KEY (id_vend),
+FOREIGN KEY (id_cli_fk) REFERENCES Cliente(id_cli),
+FOREIGN KEY (id_pro_fk) REFERENCES Produto(id_pro),
+FOREIGN KEY (id_entr_fk) REFERENCES Entregador(id_entr)
 );
 
 CREATE TABLE Registro (
-idRegistro_reg INT AUTO_INCREMENT,
+id_reg INT AUTO_INCREMENT,
 status_reg VARCHAR(45),
-Cliente_idCliente_cli INT,
-Venda_idVenda_vend INT,
-Entregador_idEntregador_entr INT,
-PRIMARY KEY (idRegistro_reg),
-FOREIGN KEY (Cliente_idCliente_cli) REFERENCES Cliente(idCliente_cli),
-FOREIGN KEY (Venda_idVenda_vend) REFERENCES Venda(id_vend),
-FOREIGN KEY (Entregador_idEntregador_entr) REFERENCES Entregador(idEntregador_entr)
+id_cli_fk INT,
+id_vend_fk INT,
+id_entr_fk INT,
+PRIMARY KEY (id_reg),
+FOREIGN KEY (id_cli_fk) REFERENCES Cliente(id_cli),
+FOREIGN KEY (id_vend_fk) REFERENCES Venda(id_vend),
+FOREIGN KEY (id_entr_fk) REFERENCES Entregador(id_entr)
 );
 
 INSERT INTO Estado VALUES (DEFAULT, "Rondônia", "RO");
