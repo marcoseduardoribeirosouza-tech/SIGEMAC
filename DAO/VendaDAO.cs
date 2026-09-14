@@ -1,16 +1,16 @@
-using SIGEMAC.Config;
-using SIGEMAC.Model;
+using sigemac.Configs;
+using sigemac.Models;
 
-namespace SIGEMAC.DAO
+namespace sigemac.DAO
 {
     public class VendaDAO
     {
 
-        private readonly Venda _venda;
+        private readonly Conexao _conexao;
 
-        public VendaDAO(Venda venda)
+        public VendaDAO(Conexao conexao)
         {
-            _venda = venda;
+            _conexao = conexao;
         }
 
 
@@ -19,24 +19,24 @@ namespace SIGEMAC.DAO
             try
             {
                 var lista = new List<Venda>();
-                using var con = _venda.GetConnection();
+                using var con = _conexao.GetConnection();
 
-                string sql = "SELECT * FROM processos";
+                string sql = "SELECT * FROM venda";
                 using var comando = con.CreateCommand();
                 comando.CommandText = sql;
                 using var leitor = comando.ExecuteReader();
 
                 while (leitor.Read())
                 {
-                    var processo = new Processo();
-                    processo.Id = leitor.GetInt32("id_vend");
-                    processo.Data_Registro = leitor.GetString("data_registro_vend");
-                    processo.Descricao = leitor.GetString("descricao_vend");
-                    processo.Cliente = leitor.GetString("id_cli_fk");
-                    processo.Produto = leitor.GetString("id_pro_fk");
-                    processo.Entregador = leitor.GetString("id_entr_fk");
+                    var venda = new Venda();
+                    venda.Id = leitor.GetInt32("id_vend");
+                    venda.Data_Registro = leitor.GetDateTime("data_registro_vend");
+                    venda.Descricao = leitor.GetString("descricao_vend");
+                    venda.Cliente = leitor.GetString("id_cli_fk");
+                    venda.Produto = leitor.GetString("id_pro_fk");
+                    venda.Entregador = leitor.GetString("id_entr_fk");
 
-                    lista.Add(processo);
+                    lista.Add(venda);
                 }
                 return lista;
             }

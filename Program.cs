@@ -1,5 +1,7 @@
 using sigemac.Components;
 using sigemac.Configs;
+using sigemac.DAO;
+using SIGEMAC.DAO;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddScoped<Conexao>();
+builder.Services.AddScoped<FornecedorDAO>();
+builder.Services.AddScoped<VendaDAO>();
+
+
 
 var app = builder.Build();
 
