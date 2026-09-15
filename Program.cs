@@ -13,6 +13,8 @@ builder.Services.AddScoped<FornecedorDAO>();
 builder.Services.AddScoped<VendaDAO>();
 builder.Services.AddScoped<ClienteDAO>();
 builder.Services.AddScoped<EntregadorDAO>();
+builder.Services.AddScoped<ProdutoDAO>();
+builder.Services.AddScoped<RegistroDAO>();
 
 var app = builder.Build();
 
