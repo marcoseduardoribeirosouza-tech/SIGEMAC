@@ -1,28 +1,95 @@
 ﻿@page "/registros"
+@rendermode InteractiveServer
+@inject CidadeDAO CidDAO;
+@inject EstadoDAO EstDAO;
+@inject EnderecoDAO EndDAO;
+@inject ClienteDAO CliDAO;
+@inject EntregadorDAO EntrDAo;
+@inject FornecedorDAO FornDAO;
+@inject ProdutoDAO ProDAO;
+@inject VendaDAO VendDAO;
+@inject RegistroDAO RegDAO;
 
-<PageTitle>Registros</PageTitle>
 
-<div class="cabecalho">
-	<h1> Registros </h1>
-</div>
-<div class="container">
+<PageTitle>Processos - Sistema de Controle de Processos</PageTitle>
 
-	<div class="lista">
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-		<div class="vendas">
-			<h6> ID: 1 - Cliente: João Silva </h6>
-			<p> entregador: Jubileu, data: 03/07, entregue. </p>
-		</div>
+    <div>
+        <h2 class="fw-bold mb-1">Consulta de Processos</h2>
+    </div>
 
-		<div class="vendas">
-			<h6> ID: 2 - Cliente: Miguel Tavares </h6>
-			<p> entregador: Osvaldo, data: 13/07, entregue. </p>
-		</div>
-
-		<div class="vendas">
-			<h6> ID: 3 - Cliente: kalebe Santos </h6>
-			<p> entregador: Eduardo, data: 15/07, entregue. </p>
-		</div>
-	</div>
 </div>
 
+
+<div calss="custom-table-card">
+    <div class="table table-responsive">
+
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Número</th>
+                    <th>Interassando</th>
+                    <th>Assunto</th>
+                    <th>Situação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var p in registros)
+                {
+                    
+                    <tr>
+                        <td>@p.Id</td>
+                        <td>@p.Cliente.Nome</td>
+
+                        <td class="text-end">
+                            <div class="btn-group btn-group-sm">
+                                <a href="#" class="btn btn-light border text-bg-danger-primary" title="Editar">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <a href="#" class="btn btn-light border text-danger" title="Excluir">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    
+    private List<Cidade>? cidades;
+    private List<Estado>? estados;
+    private List<Endereco>? enderecos;
+    private List<Cliente>? clientes;
+    private List<Entregador>? entregadores;
+    private List<Fornecedor>? fornecedores;
+    private List<Produto>? produtos;
+    private List<Venda>? vendas;
+    private List<Registro>? registros;
+
+    protected override void OnInitialized()
+    {
+        CarregarListas();
+    }
+
+    private void CarregarListas()
+    {
+        cidades = CidDAO.Listar();
+        estados = EstDAO.Listar();
+        enderecos = EndDAO.Listar();
+        clientes = CliDAO.Listar();
+        entregadores = EntrDAo.Listar();
+        fornecedores = FornDAO.Listar();
+        produtos = ProDAO.Listar();
+        vendas = VendDAO.Listar();
+        registros = RegDAO.Listar();
+    }
+}

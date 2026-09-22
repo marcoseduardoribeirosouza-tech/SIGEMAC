@@ -3,23 +3,23 @@ using sigemac.Models;
 
 namespace sigemac.DAO
 {
-    public class ClienteDAO
+    public class EnderecoDAO
     {
         private readonly Conexao _conexao;
-        public ClienteDAO(Conexao conexao)
+        public EnderecoDAO(Conexao conexao)
         {
             _conexao = conexao;
         }
 
-        public List<Cliente> Listar()
+        public List<Endereco> Listar()
         {
             try
             {
-                var lista = new List<Cliente>();
+                var lista = new List<Endereco>();
 
                 using var con = _conexao.GetConnection();
 
-                string sql = "SELECT * FROM cliente LEFT JOIN endereco ON (id_end_fk = id_end) LEFT JOIN cidade ON (id_cid_fk = id_cid) LEFT JOIN estado ON (id_est_fk = id_est);";
+                string sql = "SELECT * FROM endereco LEFT JOIN cidade ON (id_cid_fk = id_cid) LEFT JOIN estado ON (id_est_fk = id_est);";
                 using var comando = con.CreateCommand();
                 comando.CommandText = sql;
 
@@ -27,14 +27,6 @@ namespace sigemac.DAO
 
                 while (leitor.Read())
                 {
-                    var cliente = new Cliente();
-                    cliente.Id = leitor.GetInt32("id_cli");
-                    cliente.Nome = leitor.GetString("nome_cli");
-                    cliente.Email = leitor.GetString("email_cli");
-                    cliente.Telefone = leitor.GetString("telefone_cli");
-                    cliente.Observacao = leitor.GetString("observacao_cli");
-                    cliente.Cpf = leitor.GetString("cpf_cli");
-
                     var endereco = new Endereco();
                     endereco.Id = leitor.GetInt32("id_end");
                     endereco.Numero = leitor.GetInt32("numero_end");
@@ -50,11 +42,10 @@ namespace sigemac.DAO
                     estado.Nome = leitor.GetString("nome_est");
                     estado.Sigla = leitor.GetString("sigla_est");
 
-                    cliente.Endereco = endereco;
                     endereco.Cidade = cidade;
                     cidade.Estado = estado;
 
-                    lista.Add(cliente);
+                    lista.Add(endereco);
                 }
 
                 return lista;

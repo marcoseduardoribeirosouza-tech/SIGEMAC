@@ -36,6 +36,8 @@ namespace sigemac.DAO
                 fornecedor.Id = leitor.GetInt32("id_forn");
                 fornecedor.Nome = leitor.GetString("nome_forn");
                 produto.Fornecedor = fornecedor;
+
+                lista.Add(produto);
             }
 
             return lista;

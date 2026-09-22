@@ -35,6 +35,7 @@ namespace sigemac.DAO
 				Entregador.DataNascimento = leitor.GetDateTime("data_nasc_entr");
 				Entregador.DataCadastro = leitor.GetDateTime("data_cadastro_entr");
 
+				lista.Add(Entregador);
 			}
 
 			return lista;

@@ -15,6 +15,9 @@ builder.Services.AddScoped<ClienteDAO>();
 builder.Services.AddScoped<EntregadorDAO>();
 builder.Services.AddScoped<ProdutoDAO>();
 builder.Services.AddScoped<RegistroDAO>();
+builder.Services.AddScoped<EnderecoDAO>();
+builder.Services.AddScoped<CidadeDAO>();
+builder.Services.AddScoped<EstadoDAO>();
 
 var app = builder.Build();
 

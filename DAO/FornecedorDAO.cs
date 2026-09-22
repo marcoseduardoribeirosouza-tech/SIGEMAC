@@ -31,6 +31,8 @@ namespace sigemac.DAO
                 fornecedor.Cnpj = leitor.GetString("cnpj_forn");
                 fornecedor.Telefone = leitor.GetString("telefone_forn");
                 fornecedor.Email = leitor.GetString("email_forn");
+
+                lista.Add(fornecedor);
             }
 
             return lista;

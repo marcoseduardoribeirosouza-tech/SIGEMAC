@@ -32,9 +32,9 @@ namespace sigemac.DAO
                     venda.Id = leitor.GetInt32("id_vend");
                     venda.Data_Registro = leitor.GetDateTime("data_registro_vend");
                     venda.Descricao = leitor.GetString("descricao_vend");
-                    venda.Cliente = leitor.GetString("id_cli_fk");
-                    venda.Produto = leitor.GetString("id_pro_fk");
-                    venda.Entregador = leitor.GetString("id_entr_fk");
+                    //venda.Cliente = leitor.GetString("id_cli_fk");
+                    //venda.Produto = leitor.GetString("id_pro_fk");
+                    //venda.Entregador = leitor.GetString("id_entr_fk");
 
                     lista.Add(venda);
                 }
