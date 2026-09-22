@@ -1,4 +1,15 @@
 ﻿@page "/cadastros"
+@rendermode InteractiveServer
+@inject CidadeDAO CidDAO;
+@inject EstadoDAO EstDAO;
+@inject EnderecoDAO EndDAO;
+@inject ClienteDAO CliDAO;
+@inject EntregadorDAO EntrDAo;
+@inject FornecedorDAO FornDAO;
+@inject ProdutoDAO ProDAO;
+@inject VendaDAO VendDAO;
+@inject RegistroDAO RegDAO;
+
 
 <PageTitle>Cadastros</PageTitle>
 
@@ -34,36 +45,45 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="entregadores">
-			<div class="cabecalho">
-				<h2>Entregadores</h2>
-				<label for="modal-open" class="cadastrar-entregador"> Cadastrar Entregador </label>
-			</div>
-
-
-			<div class="lista-entrega">
-				<h5>Entregadores Cadastrados </h5>
-
-				<div class="entregador">
-					<h6>ID: 1 - Entregador: Jubileu </h6>
-					<p>Telefone: 9303-8912 - cpf: 021.342.450-94 </p>
-				</div>
-
-				<div class="entregador">
-					<h6>ID: 2 - Entregador: Osvaldo </h6>
-					<p>Telefone: 9903-6421 - cpf: 023.351.494-82 </p>
-				</div>
-
-				<div class="entregador">
-					<h6>ID: 3 - Entregador: Eduardo </h6>
-					<p>Telefone: 9913-4432 - cpf: 022.355.409-89 </p>
-				</div>
-			</div>
-		</div>
 	</div>
-	
-	<input type="checkbox" id="modal-open" class="modal-close"/>
+</div>
+<div calss="custom-table-card">
+</div>
+
+@code {
+
+	private List<Cidade>? cidades;
+	private List<Estado>? estados;
+	private List<Endereco>? enderecos;
+	private List<Cliente>? clientes;
+	private List<Entregador>? entregadores;
+	private List<Fornecedor>? fornecedores;
+	private List<Produto>? produtos;
+	private List<Venda>? vendas;
+	private List<Registro>? registros;
+
+	protected override void OnInitialized()
+	{
+		CarregarListas();
+	}
+
+	private void CarregarListas()
+	{
+		cidades = CidDAO.Listar();
+		estados = EstDAO.Listar();
+		enderecos = EndDAO.Listar();
+		clientes = CliDAO.Listar();
+		entregadores = EntrDAo.Listar();
+		fornecedores = FornDAO.Listar();
+		produtos = ProDAO.Listar();
+		vendas = VendDAO.Listar();
+		registros = RegDAO.Listar();
+	}
+}
+
+
+
+	@* <input type="checkbox" id="modal-open" class="modal-close"/>
 	<div class="modal-base">
 
 		<div class="modal-dados">
@@ -96,5 +116,4 @@
 				<label for="modal-open" class="Cancelar" onclick="Cancelar">Cancelar</label>
 			</div>
 		</div>
-	</div>
-</div>
+	</div> *@
