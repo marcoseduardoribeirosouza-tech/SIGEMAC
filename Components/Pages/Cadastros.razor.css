@@ -1,20 +1,28 @@
 .cabecalho {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .area {
-    margin: 50px;
+    margin: 50px auto;
     padding: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     background: #f4f4f4;
-    position: fixed;
-    width: 120vh;
+    /* IMPORTANTE: não usar fixed */
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    /* Permite que o conteúdo cresça */
+    min-height: auto;
+    box-sizing: border-box;
 }
 
 .cadastrar-cliente {
+    display: inline-block;
     background-color: #e0e0e0;
     padding: 8px 16px;
     border-radius: 20px;
@@ -22,6 +30,8 @@
     font-size: 14px;
     border: 1px solid #ccc;
     margin-bottom: 8px;
+    text-decoration: none;
+    color: #212529;
 }
 
     .cadastrar-cliente:hover {
@@ -32,16 +42,20 @@
     border: 1px solid gray;
     border-radius: 10px;
     font-size: 15px;
+    overflow: hidden;
 }
 
     .lista h5 {
         padding: 10px;
+        margin: 0;
         border-bottom: 1px solid gray;
+        background-color: #eeeeee;
     }
 
 .cliente {
     padding: 10px;
     border-bottom: 1px solid gray;
+    background-color: #f4f4f4;
 }
 
     .cliente p {
@@ -57,7 +71,13 @@
         background-color: #adadad;
     }
 
+
+/* =========================
+   ENTREGADORES
+   ========================= */
+
 .cadastrar-entregador {
+    display: inline-block;
     background-color: #e0e0e0;
     padding: 8px 16px;
     border-radius: 20px;
@@ -65,7 +85,8 @@
     font-size: 14px;
     border: 1px solid #ccc;
     margin-bottom: 8px;
-    justify-content: end;
+    text-decoration: none;
+    color: #212529;
 }
 
     .cadastrar-entregador:hover {
@@ -76,11 +97,14 @@
     border: 1px solid gray;
     border-radius: 10px;
     font-size: 15px;
+    overflow: hidden;
 }
 
     .lista-entrega h5 {
         padding: 10px;
+        margin: 0;
         border-bottom: 1px solid gray;
+        background-color: #eeeeee;
     }
 
 .entregador {
@@ -101,6 +125,11 @@
         border-bottom: none;
     }
 
+
+/* =========================
+   MODAL
+   ========================= */
+
 .modal-close {
     display: none;
 }
@@ -116,6 +145,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    overflow-y: auto;
 }
 
 .modal-close:checked ~ .modal-base {
@@ -125,21 +155,23 @@
 }
 
 .modal-dados {
+    width: 90%;
     max-width: 600px;
-    margin: 0px auto;
+    margin: 20px auto;
     padding: 20px;
     background-color: #f4f4f4;
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     gap: 20px;
+    box-sizing: border-box;
 }
-
 
 .modal-info {
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 
     .modal-info p {
@@ -160,7 +192,6 @@
         box-sizing: border-box;
     }
 
-
     .modal-info textarea {
         resize: vertical;
         min-height: 120px;
@@ -176,7 +207,7 @@
 
 .modal-botoes {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-end;
     cursor: pointer;
     border-radius: 8px;
@@ -193,6 +224,7 @@
 
     .Cancelar:hover {
         background-color: #782525;
+        color: white;
     }
 
 .Salvar {
@@ -205,4 +237,33 @@
 
     .Salvar:hover {
         background-color: #336b28;
+        color: white;
     }
+
+
+/* =========================
+   RESPONSIVIDADE
+   ========================= */
+
+@media (max-width: 768px) {
+
+    .area {
+        width: 95%;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .cabecalho {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .modal-dados {
+        flex-direction: column;
+    }
+
+    .modal-botoes {
+        justify-content: flex-end;
+    }
+}
