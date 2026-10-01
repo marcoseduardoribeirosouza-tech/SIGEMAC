@@ -42,5 +42,21 @@ namespace sigemac.DAO
 
             return lista;
         }
+
+        public void Inserir(Produto produto)
+        {
+            using var con = _conexao.GetConnection();
+
+            string sql = "INSERT INTO produto (nome_pro, quantidade_pro, preco_pro, descricao_pro) VALUES (@nome, @quantidade, @preco, @descricao)";
+            using var comando = con.CreateCommand();
+            comando.CommandText = sql;
+
+            comando.Parameters.AddWithValue("@nome", produto.Nome);
+            comando.Parameters.AddWithValue("@quantidade", produto.Quantidade);
+            comando.Parameters.AddWithValue("@preco", produto.Preco);
+            comando.Parameters.AddWithValue("@descricao", produto.Descricao);
+
+            comando.ExecuteNonQuery();
+        }
     }
 }
