@@ -1,4 +1,4 @@
-﻿@page "/cadastros/cadastro"
+﻿@page "/cadastroCliente/cadastro"
 @rendermode InteractiveServer
 
 @inject ClienteDAO CliDAO
@@ -14,6 +14,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
             <h2 class="fw-bold mb-1">Cadastro de Cliente</h2>
+
             <p class="text-muted mb-0">
                 Preencha os dados para cadastrar um novo cliente.
             </p>
@@ -133,7 +134,7 @@
                     Salvar
                 </button>
 
-                <a href="/cadastros" class="btn btn-light border">
+                <a href="/cadastroCliente" class="btn btn-light border">
                     Cancelar
                 </a>
 
@@ -153,6 +154,6 @@
     {
         CliDAO.Inserir(cliente);
 
-        NavigationManager.NavigateTo("/cadastros");
+        NavigationManager.NavigateTo("/cadastroCliente");
     }
 }
