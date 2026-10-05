@@ -1,0 +1,106 @@
+﻿@page "/cadastro"
+@rendermode InteractiveServer
+
+@inject CidadeDAO CidDAO
+@inject EstadoDAO EstDAO
+@inject EnderecoDAO EndDAO
+@inject ClienteDAO CliDAO
+@inject EntregadorDAO EntrDAO
+@inject FornecedorDAO FornDAO
+@inject ProdutoDAO ProDAO
+@inject VendaDAO VendDAO
+@inject RegistroDAO RegDAO
+
+<PageTitle>Cadastro</PageTitle>
+
+<div class="container">
+
+    <h1>Cadastros</h1>
+
+    <div class="area">
+
+        <div class="clientes">
+
+            <div class="cabecalho">
+
+                <h2>Clientes</h2>
+
+                <a href="/cadastroCliente" class="cadastrar-cliente">
+                    Cadastrar Cliente
+                </a>
+
+            </div>
+
+            <div class="lista">
+
+                <h5>Clientes Cadastrados</h5>
+
+                @if (clientes != null && clientes.Any())
+                {
+                    @foreach (var cliente in clientes)
+                    {
+                        <div class="cliente">
+
+                            <h6>
+                                ID: @cliente.Id - Cliente: @cliente.Nome
+                            </h6>
+
+                            <p>
+                                Telefone: @cliente.Telefone - CPF: @cliente.Cpf
+                            </p>
+
+                            <p>
+                                E-mail: @cliente.Email
+                            </p>
+
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">
+                        Nenhum cliente cadastrado.
+                    </p>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="custom-table-card">
+    </div>
+
+</div>
+
+@code {
+
+    private List<Cidade>? cidades;
+    private List<Estado>? estados;
+    private List<Endereco>? enderecos;
+    private List<Cliente>? clientes;
+    private List<Entregador>? entregadores;
+    private List<Fornecedor>? fornecedores;
+    private List<Produto>? produtos;
+    private List<Venda>? vendas;
+    private List<Registro>? registros;
+
+    protected override void OnInitialized()
+    {
+        CarregarListas();
+    }
+
+    private void CarregarListas()
+    {
+        cidades = CidDAO.Listar();
+        estados = EstDAO.Listar();
+        enderecos = EndDAO.Listar();
+        clientes = CliDAO.Listar();
+        entregadores = EntrDAO.Listar();
+        fornecedores = FornDAO.Listar();
+        produtos = ProDAO.Listar();
+        vendas = VendDAO.Listar();
+        registros = RegDAO.Listar();
+    }
+}

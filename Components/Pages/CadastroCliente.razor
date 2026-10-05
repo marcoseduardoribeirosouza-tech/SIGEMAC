@@ -1,107 +1,166 @@
 ﻿@page "/cadastroCliente"
 @rendermode InteractiveServer
 
-@inject CidadeDAO CidDAO
-@inject EstadoDAO EstDAO
-@inject EnderecoDAO EndDAO
 @inject ClienteDAO CliDAO
-@inject EntregadorDAO EntrDAO
-@inject FornecedorDAO FornDAO
-@inject ProdutoDAO ProDAO
-@inject VendaDAO VendDAO
-@inject RegistroDAO RegDAO
+@inject NavigationManager NavigationManager
 
-<PageTitle>Cadastros</PageTitle>
+@using Microsoft.AspNetCore.Components.Forms
+@using sigemac.Models
+
+<PageTitle>Cadastrar Cliente</PageTitle>
 
 <div class="container">
 
-    <h1>Cadastros</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <div class="area">
+        <div>
 
-        <div class="clientes">
+            <h2 class="fw-bold mb-1">
+                Cadastro de Cliente
+            </h2>
 
-            <div class="cabecalho">
-
-                <h2>Clientes</h2>
-
-                <a href="/cadastroCliente/cadastro" class="cadastrar-cliente">
-                    Cadastrar Cliente
-                </a>
-
-            </div>
-
-            <div class="lista">
-
-                <h5>Clientes Cadastrados</h5>
-
-                @if (clientes != null && clientes.Any())
-                {
-                    @foreach (var cliente in clientes)
-                    {
-                        <div class="cliente">
-
-                            <h6>
-                                ID: @cliente.Id - Cliente: @cliente.Nome
-                            </h6>
-
-                            <p>
-                                Telefone: @cliente.Telefone - CPF: @cliente.Cpf
-                            </p>
-
-                            <p>
-                                E-mail: @cliente.Email
-                            </p>
-
-                        </div>
-                    }
-                }
-                else
-                {
-                    <p class="text-muted">
-                        Nenhum cliente cadastrado.
-                    </p>
-                }
-
-            </div>
+            <p class="text-muted mb-0">
+                Preencha os dados para cadastrar um novo cliente.
+            </p>
 
         </div>
 
     </div>
 
-    <div class="custom-table-card">
+    <div class="custom-table-card p-4">
+
+        <EditForm Model="cliente" OnValidSubmit="Salvar">
+
+            <DataAnnotationsValidator />
+
+            <ValidationSummary class="alert alert-danger" />
+
+            <!-- Nome -->
+            <div class="row mb-3">
+
+                <div class="col-md-8">
+
+                    <label for="nome" class="form-label">
+                        Nome
+                    </label>
+
+                    <InputText id="nome"
+                               class="form-control"
+                               @bind-Value="cliente.Nome"
+                               placeholder="Digite o nome do cliente" />
+
+                    <ValidationMessage For="() => cliente.Nome" />
+
+                </div>
+
+            </div>
+
+            <!-- E-mail e Telefone -->
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+
+                    <label for="email" class="form-label">
+                        E-mail
+                    </label>
+
+                    <InputText id="email"
+                               type="email"
+                               class="form-control"
+                               @bind-Value="cliente.Email"
+                               placeholder="Digite o e-mail" />
+
+                    <ValidationMessage For="() => cliente.Email" />
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label for="telefone" class="form-label">
+                        Telefone
+                    </label>
+
+                    <InputText id="telefone"
+                               class="form-control"
+                               @bind-Value="cliente.Telefone"
+                               placeholder="Digite o telefone" />
+
+                    <ValidationMessage For="() => cliente.Telefone" />
+
+                </div>
+
+            </div>
+
+            <!-- CPF -->
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+
+                    <label for="cpf" class="form-label">
+                        CPF
+                    </label>
+
+                    <InputText id="cpf"
+                               class="form-control"
+                               @bind-Value="cliente.Cpf"
+                               placeholder="000.000.000-00" />
+
+                    <ValidationMessage For="() => cliente.Cpf" />
+
+                </div>
+
+            </div>
+
+            <!-- Observação -->
+            <div class="row mb-3">
+
+                <div class="col-md-12">
+
+                    <label for="observacao" class="form-label">
+                        Observação
+                    </label>
+
+                    <InputTextArea id="observacao"
+                                   class="form-control"
+                                   rows="4"
+                                   @bind-Value="cliente.Observacao"
+                                   placeholder="Digite alguma observação sobre o cliente" />
+
+                    <ValidationMessage For="() => cliente.Observacao" />
+
+                </div>
+
+            </div>
+
+            <!-- Botões -->
+            <div class="d-flex gap-2 mt-4">
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar
+                </button>
+
+                <a href="/cadastro" class="btn btn-light border">
+                    Cancelar
+                </a>
+
+            </div>
+
+        </EditForm>
+
     </div>
 
 </div>
 
 @code {
 
-    private List<Cidade>? cidades;
-    private List<Estado>? estados;
-    private List<Endereco>? enderecos;
-    private List<Cliente>? clientes;
-    private List<Entregador>? entregadores;
-    private List<Fornecedor>? fornecedores;
-    private List<Produto>? produtos;
-    private List<Venda>? vendas;
-    private List<Registro>? registros;
+    private Cliente cliente = new();
 
-    protected override void OnInitialized()
+    private void Salvar()
     {
-        CarregarListas();
-    }
+        CliDAO.Inserir(cliente);
 
-    private void CarregarListas()
-    {
-        cidades = CidDAO.Listar();
-        estados = EstDAO.Listar();
-        enderecos = EndDAO.Listar();
-        clientes = CliDAO.Listar();
-        entregadores = EntrDAO.Listar();
-        fornecedores = FornDAO.Listar();
-        produtos = ProDAO.Listar();
-        vendas = VendDAO.Listar();
-        registros = RegDAO.Listar();
+        NavigationManager.NavigateTo("/cadastro");
     }
 }
 
