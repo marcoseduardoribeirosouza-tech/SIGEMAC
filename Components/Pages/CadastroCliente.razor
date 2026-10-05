@@ -1,0 +1,141 @@
+﻿@page "/cadastroCliente"
+@rendermode InteractiveServer
+
+@inject CidadeDAO CidDAO
+@inject EstadoDAO EstDAO
+@inject EnderecoDAO EndDAO
+@inject ClienteDAO CliDAO
+@inject EntregadorDAO EntrDAO
+@inject FornecedorDAO FornDAO
+@inject ProdutoDAO ProDAO
+@inject VendaDAO VendDAO
+@inject RegistroDAO RegDAO
+
+<PageTitle>Cadastros</PageTitle>
+
+<div class="container">
+
+    <h1>Cadastros</h1>
+
+    <div class="area">
+
+        <div class="clientes">
+
+            <div class="cabecalho">
+
+                <h2>Clientes</h2>
+
+                <a href="/cadastroCliente/cadastro" class="cadastrar-cliente">
+                    Cadastrar Cliente
+                </a>
+
+            </div>
+
+            <div class="lista">
+
+                <h5>Clientes Cadastrados</h5>
+
+                @if (clientes != null && clientes.Any())
+                {
+                    @foreach (var cliente in clientes)
+                    {
+                        <div class="cliente">
+
+                            <h6>
+                                ID: @cliente.Id - Cliente: @cliente.Nome
+                            </h6>
+
+                            <p>
+                                Telefone: @cliente.Telefone - CPF: @cliente.Cpf
+                            </p>
+
+                            <p>
+                                E-mail: @cliente.Email
+                            </p>
+
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">
+                        Nenhum cliente cadastrado.
+                    </p>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="custom-table-card">
+    </div>
+
+</div>
+
+@code {
+
+    private List<Cidade>? cidades;
+    private List<Estado>? estados;
+    private List<Endereco>? enderecos;
+    private List<Cliente>? clientes;
+    private List<Entregador>? entregadores;
+    private List<Fornecedor>? fornecedores;
+    private List<Produto>? produtos;
+    private List<Venda>? vendas;
+    private List<Registro>? registros;
+
+    protected override void OnInitialized()
+    {
+        CarregarListas();
+    }
+
+    private void CarregarListas()
+    {
+        cidades = CidDAO.Listar();
+        estados = EstDAO.Listar();
+        enderecos = EndDAO.Listar();
+        clientes = CliDAO.Listar();
+        entregadores = EntrDAO.Listar();
+        fornecedores = FornDAO.Listar();
+        produtos = ProDAO.Listar();
+        vendas = VendDAO.Listar();
+        registros = RegDAO.Listar();
+    }
+}
+
+	@* <input type="checkbox" id="modal-open" class="modal-close"/>
+	<div class="modal-base">
+
+		<div class="modal-dados">
+			<div class="modal-info">
+				<p>Nome:</p>
+				<input type="text" placeholder="Nome" />
+				<p>ID:</p>
+				<input type="number" placeholder="ID" />
+				<p>Data de Nascimento:</p>
+				<input type="date" placeholder="Data de Nascimento" />
+				<p>Detalhes:</p>
+				<textarea placeholder=" Detalhes"></textarea>
+				</div>
+
+			<div class="modal-info">
+				<p>CNH:</p>
+				<input type="text" placeholder="CNH" />
+				<p>Telefone:</p>
+				<input type="text" placeholder="Telefone" />
+				<p>E-mail:</p>
+				<input type="text" placeholder="E-mail" />
+				<p>CPF:</p>
+				<input type="text" placeholder="CPF" />
+				<p>Data de Cadastro:</p>
+				<input type="date" placeholder="Data de Cadastro" />
+			</div>
+
+			<div class="modal-botoes">
+				<label class="Salvar" onclick="Salvar">Salvar</label>
+				<label for="modal-open" class="Cancelar" onclick="Cancelar">Cancelar</label>
+			</div>
+		</div>
+	</div> *@

@@ -14,13 +14,17 @@
         font-weight: normal;
     }
 
-.botao-cadastrar {
+.btnCadastro {
     background-color: #e0e0e0;
     padding: 8px 16px;
-    border-radius: 20px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 14px;
     border: 1px solid #ccc;
+    position: absolute;
+    right: 12.6rem;
+    top: 9rem;
+    z-index: 10;
 }
 
 .busca {

@@ -1,0 +1,100 @@
+@page "/estoque/estoqueCadastro"
+@rendermode InteractiveServer
+
+@inject  ProdutoDAO Prodao
+@inject NavigationManager NavigationManager
+
+@using sigemac.Models;
+<PageTitle>Cadastro de Produto</PageTitle>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-1">Cadastro de Processo</h2>
+    </div>
+</div>
+<div class="custom-table-card p-4">
+    <EditForm Model="produto" OnValidSubmit="Salvar">
+        <DataAnnotationsValidator />
+        <ValidationSummary class="alert alert-danger" />
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="nome_prod" class="form-label">
+                    Nome do Produto
+                </label>
+                <InputText
+                    id="nome_prod"
+                    class="form-control"
+                    @bind-Value="produto.Nome" />
+                <ValidationMessage For="() => produto.Nome" />
+            </div>
+            <div class="col-md-4">
+                <label for="quantidade_prod" class="form-label">
+                    Quantidade de Produto
+                </label>
+                <InputText
+                    id="quantidade_prod"
+                    class="form-select"
+                    @bind-Value="produto.Quantidade">
+                </InputText>
+                <ValidationMessage For="() => produto.Quantidade" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="interessado" class="form-label">
+                    Interessado
+                </label>
+                <InputText
+                    id="interessado"
+                    class="form-control"
+                    @bind-Value="processo.Interessado" />
+                <ValidationMessage For="() => processo.Interessado" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="assunto" class="form-label">
+                    Assunto
+                </label>
+                <InputText
+                    id="assunto"
+                    class="form-control"
+                    @bind-Value="processo.Assunto" />
+                <ValidationMessage For="() => processo.Assunto" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="descricao" class="form-label">
+                    Descricaoo
+                </label>
+                <InputTextArea
+                    id="descricao"
+                    class="form-control"
+                    rows="4"
+                    @bind-Value="processo.Descricao" />
+                <ValidationMessage For="() => processo.Descricao" />
+            </div>
+        </div>
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-lg"></i>
+                Salvar
+            </button>
+            <a href="/estoque" class="btn btn-light border">
+                Cancelar
+            </a>
+        </div>
+    </EditForm>
+</div>
+
+@code
+{
+    private Produto produto = new();
+
+    private void Salvar()
+    {
+        dao.Inserir(produto);
+        // Retorna a p?gina de processos ap?s salvar
+        NavigationManager.NavigateTo("/estoque");
+    }
+}
