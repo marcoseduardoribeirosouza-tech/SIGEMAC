@@ -116,9 +116,9 @@ namespace sigemac.DAO
                 comando.Parameters.AddWithValue("@id", venda.Id);
                 comando.Parameters.AddWithValue("@dataRegistro", venda.DataRegistro!.Value.ToDateTime(TimeOnly.MinValue));
                 comando.Parameters.AddWithValue("@descricao", venda.Descricao);
-                comando.Parameters.AddWithValue("@cliente", venda.Cliente);
-                comando.Parameters.AddWithValue("@produto", venda.Produto);
-                comando.Parameters.AddWithValue("@entregador", venda.Entregador);
+                comando.Parameters.AddWithValue("@cliente", venda.Cliente.Id);
+                comando.Parameters.AddWithValue("@produto", venda.Produto.Id);
+                comando.Parameters.AddWithValue("@entregador", venda.Entregador.Id);
 
                 comando.ExecuteNonQuery();
             }

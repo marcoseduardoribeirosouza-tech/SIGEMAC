@@ -1,43 +1,215 @@
 ﻿@page "/vendas"
+@rendermode InteractiveServer
 
-<PageTitle>Vendas</PageTitle>
+@inject VendaDAO VendaDAO
+@inject ClienteDAO ClienteDAO
+@inject ProdutoDAO ProdutoDAO
+@inject EntregadorDAO EntregadorDAO
+@inject NavigationManager NavigationManager
 
-<h1>Registro de Venda</h1>
+@using Microsoft.AspNetCore.Components.Forms
+@using sigemac.Models
+@using sigemac.DAO
 
-<div class="formulario-venda">
-	<div class="campo">
-		<label>Item</label>
-		<input type="text" placeholder="Selecione o item"/>
-	</div>
+<PageTitle>Registrar Venda</PageTitle>
 
-	<div class="campo">
-		<label>Entregador</label>
-		<input type="text" placeholder="Nome do Entregador" />
-	</div>
+<div class="container">
 
-	<div class="campo">
-		<label>Data de Registro</label>
-		<input type="date" />
-	</div>
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-	<div class="campo">
-		<label>Cliente</label>
-		<input type="text" placeholder="Colocar o Nome do Cliente"/>
-	</div>
+        <div>
+            <h2 class="fw-bold mb-1">Registro de Venda</h2>
 
-	<div class="campo"> 
-		<label>Detalhes</label>
-		<textarea placeholder="Informações adicionais do item"></textarea>
-	</div>
+            <p class="text-muted mb-0">
+                Preencha os dados para registrar uma nova venda.
+            </p>
+        </div>
 
-	<div class="botoes">
-		<button class="cancelar">Cancelar</button>
-		<button class="salvar">Salvar</button>
-	</div>
+    </div>
 
-	@* Não há como fazer algo muito além disso por enquanto,
-		preciso de pelo menos ter uma "lista" do item e cadastro 
-		tanto de cliente como de entregador para começar a fazer do jeito certo o select como está no protótipo figma
-	*@
+    <div class="custom-table-card p-4">
+
+        <EditForm Model="venda" OnValidSubmit="Salvar">
+
+            <DataAnnotationsValidator />
+
+            <ValidationSummary class="alert alert-danger" />
+
+            <!-- Produto -->
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+
+                    <label for="produto" class="form-label">
+                        Item
+                    </label>
+
+                    <InputSelect id="produto"
+                                 class="form-select"
+                                 @bind-Value="produtoSelecionado">
+
+                        <option value="0">Selecione o item</option>
+
+                        @foreach (var produto in produtos)
+                        {
+                            <option value="@produto.Id">
+                                @produto.Nome
+                            </option>
+                        }
+
+                    </InputSelect>
+
+                </div>
+
+                <!-- Entregador -->
+                <div class="col-md-6">
+
+                    <label for="entregador" class="form-label">
+                        Entregador
+                    </label>
+
+                    <InputSelect id="entregador"
+                                 class="form-select"
+                                 @bind-Value="entregadorSelecionado">
+
+                        <option value="0">Selecione o entregador</option>
+
+                        @foreach (var entregador in entregadores)
+                        {
+                            <option value="@entregador.Id">
+                                @entregador.Nome
+                            </option>
+                        }
+
+                    </InputSelect>
+
+                </div>
+
+            </div>
+
+            <!-- Data e Cliente -->
+            <div class="row mb-3">
+
+                <div class="col-md-6">
+
+                    <label for="data" class="form-label">
+                        Data de Registro
+                    </label>
+
+                    <InputDate id="data"
+                               class="form-control"
+                               @bind-Value="venda.DataRegistro" />
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label for="cliente" class="form-label">
+                        Cliente
+                    </label>
+
+                    <InputSelect id="cliente"
+                                 class="form-select"
+                                 @bind-Value="clienteSelecionado">
+
+                        <option value="0">Selecione o cliente</option>
+
+                        @foreach (var cliente in clientes)
+                        {
+                            <option value="@cliente.Id">
+                                @cliente.Nome
+                            </option>
+                        }
+
+                    </InputSelect>
+
+                </div>
+
+            </div>
+
+            <!-- Detalhes -->
+            <div class="row mb-3">
+
+                <div class="col-md-12">
+
+                    <label for="descricao" class="form-label">
+                        Detalhes
+                    </label>
+
+                    <InputTextArea id="descricao"
+                                   class="form-control"
+                                   rows="4"
+                                   @bind-Value="venda.Descricao"
+                                   placeholder="Informações adicionais da venda" />
+
+                    <ValidationMessage For="() => venda.Descricao" />
+
+                </div>
+
+            </div>
+
+            <!-- Botões -->
+            <div class="d-flex gap-2 mt-4">
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar
+                </button>
+
+                <button type="button"
+                        class="btn btn-light border"
+                        @onclick="Cancelar">
+
+                    Cancelar
+
+                </button>
+
+            </div>
+
+        </EditForm>
+
+    </div>
 
 </div>
+
+@code {
+
+    private Venda venda = new();
+
+    private List<Cliente> clientes = new();
+    private List<Produto> produtos = new();
+    private List<Entregador> entregadores = new();
+
+    private int clienteSelecionado;
+    private int produtoSelecionado;
+    private int entregadorSelecionado;
+
+
+    protected override void OnInitialized()
+    {
+        clientes = ClienteDAO.Listar();
+        produtos = ProdutoDAO.Listar();
+        entregadores = EntregadorDAO.Listar();
+
+        venda.DataRegistro = DateOnly.FromDateTime(DateTime.Today);
+    }
+
+
+    private void Salvar()
+    {
+        venda.Cliente = clientes.FirstOrDefault(c => c.Id == clienteSelecionado);
+        venda.Produto = produtos.FirstOrDefault(p => p.Id == produtoSelecionado);
+        venda.Entregador = entregadores.FirstOrDefault(e => e.Id == entregadorSelecionado);
+
+        VendaDAO.Inserir(venda);
+
+        NavigationManager.NavigateTo("/vendas");
+    }
+
+
+    private void Cancelar()
+    {
+        NavigationManager.NavigateTo("/vendas");
+    }
+
+}
