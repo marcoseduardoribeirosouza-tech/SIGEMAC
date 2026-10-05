@@ -74,6 +74,65 @@
 
 </div>
 
+<div class="container">
+
+    <div class="area">
+
+        <div class="entregadores">
+
+            <div class="cabecalho">
+
+                <h2>Entregadores</h2>
+
+                <a href="/CadastroEntregador" class="cadastrar-entregador">
+                    Cadastrar Entregador
+                </a>
+
+            </div>
+
+            <div class="lista">
+
+                <h5>Entregadores Cadastrados</h5>
+
+                @if (entregadores != null && entregadores.Any())
+                {
+                    @foreach (var entregador in entregadores)
+                    {
+                        <div class="entregador">
+
+                            <h6>
+                                ID: @entregador.Id - Entregador: @entregador.Nome
+                            </h6>
+
+                            <p>
+                                Telefone: @entregador.Telefone - CNH: @entregador.CNH
+                            </p>
+
+                            <p>
+                                Data Cadastro: @entregador.DataCadastro
+                            </p>
+
+                        </div>
+                    }
+                }
+                else
+                {
+                    <p class="text-muted">
+                        Nenhum entregador cadastrado.
+                    </p>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="custom-table-card">
+    </div>
+
+</div>
+
 @code {
 
     private List<Cidade>? cidades;

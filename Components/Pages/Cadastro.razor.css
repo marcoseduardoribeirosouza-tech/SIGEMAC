@@ -69,6 +69,42 @@
         background-color: #adadad;
     }
 
+.cadastrar-entregador {
+    display: inline-block;
+    background-color: #e0e0e0;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: #212529;
+}
+
+    .cadastrar-entregador:hover {
+        background-color: #adadad;
+    }
+
+    .entregador {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    background-color: #f4f4f4;
+}
+
+        .entregador p {
+            color: grey;
+            margin: 0;
+        }
+
+        .entregador:last-child {
+            border-bottom: none;
+        }
+
+        .entregador:hover {
+            background-color: #adadad;
+        }
+
 /* Responsividade */
 
 @media (max-width: 768px) {

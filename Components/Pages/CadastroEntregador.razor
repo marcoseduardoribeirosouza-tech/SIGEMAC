@@ -1,0 +1,117 @@
+﻿@page "/CadastroEntregador"
+@rendermode InteractiveServer
+
+@inject EntregadorDAO EntDAO
+@inject NavigationManager NavigationManager
+
+@using Microsoft.AspNetCore.Components.Forms
+@using sigemac.Models
+
+<PageTitle>Cadastrar Entregador</PageTitle>
+
+<div class="container">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold mb-1">
+                Cadastro de Entregador
+            </h2>
+            <p class="text-muted mb-0">
+                Preencha os dados para cadastrar um novo entregador.
+            </p>
+        </div>
+    </div>
+
+    <div class="custom-table-card p-4">
+        <EditForm Model="entregador" OnValidSubmit="Salvar">
+            <DataAnnotationsValidator/>
+            <ValidationSummary class="alert alert-danger"/>
+            <div class="row mb-3">
+                <div class="col-md-8">
+                    <label for="nome" class="form-label">
+                        Nome
+                    </label>
+                    <InputText id="nome"
+                               class="form-control"
+                               @bind-Value="entregador.Nome"
+                               placeholder="Digite o nome do entregador" />
+                    <ValidationMessage For="() => entregador.Nome" />
+                </div>
+
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="CNH" class="form-label">
+                        CNH
+                    </label>
+                    <InputText id="CNH"
+                               class="form-control"
+                               @bind-Value="entregador.CNH"
+                               placeholder="Digite a CNH" />
+                    <ValidationMessage For="() => entregador.CNH" />
+                </div>
+
+                <div class="col-md-6">
+                    <label for="telefone" class="form-label">
+                        Telefone
+                    </label>
+                    <InputText id="telefone"
+                               class="form-control"
+                               @bind-Value="entregador.Telefone"
+                               placeholder="Digite o telefone" />
+                    <ValidationMessage For="() => entregador.Telefone" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="dataCadastro" class="form-label">
+                        Data Cadastro
+                    </label>
+                    <input id="dataCadastro"
+                               class="form-control"
+                               @bind-value ="entregador.DataCadastro"
+                               placeholder="Digite a Data" />
+                    <ValidationMessage For="() => entregador.DataCadastro" />
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <label for="descricao" class="form-label">
+                        Observação
+                    </label>
+                    <InputTextArea id="descricao"
+                                   class="form-control"
+                                   rows="4"
+                                   @bind-Value="entregador.Descricao"
+                                   placeholder="Digite alguma observação sobre o entregador" />
+                    <ValidationMessage For="() => entregador.Descricao" />
+                </div>
+            </div>
+
+            <div class="d-flex gap-2 mt-4">
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-check-lg"></i>
+                    Salvar
+                </button>
+                <a href="/cadastro" class="btn btn-light border">
+                    Cancelar
+                </a>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+
+
+@code {
+
+    private Entregador entregador = new();
+    private void Salvar()
+    {
+        EntDAO.Inserir(entregador);
+        NavigationManager.NavigateTo("/cadastro");
+    }
+}

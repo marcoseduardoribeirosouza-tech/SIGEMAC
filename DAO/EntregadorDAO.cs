@@ -32,13 +32,34 @@ namespace sigemac.DAO
 				Entregador.Telefone = leitor.GetString("telefone_entr");
 				Entregador.CNH = leitor.GetString("cnh_entr");
 				Entregador.Descricao = leitor.GetString("descricao_entr");
-				Entregador.DataNascimento = leitor.GetDateTime("data_nasc_entr");
 				Entregador.DataCadastro = leitor.GetDateTime("data_cadastro_entr");
 
 				lista.Add(Entregador);
 			}
 
 			return lista;
+		}
+
+		public void Inserir(Entregador entregador)
+		{
+			try
+			{
+				using var con = _conexao.GetConnection();
+				string sql = "INSERT INTO entregador ( nome_entr, telefone_entr, cnh_entr, data_cadastro_entr, descricao_entr) VALUES (@nome, @telefone, @CNH, @dataCadastro, @descricao);";
+				using var comando = con.CreateCommand();
+				comando.CommandText = sql;
+				comando.Parameters.AddWithValue("@nome", entregador.Nome);
+				comando.Parameters.AddWithValue("@telefone", entregador.Telefone);
+				comando.Parameters.AddWithValue("@CNH", entregador.CNH );
+				comando.Parameters.AddWithValue("@dataCadastro", entregador.DataCadastro);
+				comando.Parameters.AddWithValue("@descricao", entregador.Descricao);
+
+				comando.ExecuteNonQuery();
+			}
+			catch
+			{
+				throw;
+			}
 		}
 	}
 }
