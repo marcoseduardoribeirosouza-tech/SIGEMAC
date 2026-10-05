@@ -84,7 +84,7 @@ FOREIGN KEY (id_forn_fk) REFERENCES Fornecedor(id_forn)
 CREATE TABLE Venda (
 id_vend INT AUTO_INCREMENT,
 data_registro_vend DATE,
-descricao_vend VARCHAR(45),
+descricao_vend VARCHAR(200),
 id_cli_fk INT,
 id_pro_fk INT,
 id_entr_fk INT,
@@ -100,10 +100,14 @@ status_reg VARCHAR(45),
 id_cli_fk INT,
 id_vend_fk INT,
 id_entr_fk INT,
+id_pro_fk INT,
+id_forn_fk INT,
 PRIMARY KEY (id_reg),
 FOREIGN KEY (id_cli_fk) REFERENCES Cliente(id_cli),
 FOREIGN KEY (id_vend_fk) REFERENCES Venda(id_vend),
-FOREIGN KEY (id_entr_fk) REFERENCES Entregador(id_entr)
+FOREIGN KEY (id_entr_fk) REFERENCES Entregador(id_entr),
+FOREIGN KEY (id_pro_fk) REFERENCES Produto(id_pro),
+FOREIGN KEY (id_forn_fk) REFERENCES Fornecedor(id_forn)
 );
 
 INSERT INTO Estado VALUES (DEFAULT, "Rondônia", "RO");
@@ -142,20 +146,20 @@ INSERT INTO Fornecedor VALUES (DEFAULT, "Mercantil Norte", "34567890000103", "69
 INSERT INTO Fornecedor VALUES (DEFAULT, "Produtos Rondônia", "45678901000104", "69994444444", "contato@produtosro.com");
 INSERT INTO Fornecedor VALUES (DEFAULT, "Comercial Central", "56789012000105", "69995555555", "contato@comercialcentral.com");
 
-INSERT INTO Produto VALUES (DEFAULT, "Arroz", 50, 25.90, "Arroz tipo 1", 1);
-INSERT INTO Produto VALUES (DEFAULT, "Feijão", 40, 8.50, "Feijão carioca", 2);
-INSERT INTO Produto VALUES (DEFAULT, "Macarrão", 60, 5.99, "Macarrão espaguete", 3);
-INSERT INTO Produto VALUES (DEFAULT, "Açúcar", 35, 4.75, "Açúcar cristal", 4);
-INSERT INTO Produto VALUES (DEFAULT, "Café", 45, 16.90, "Café tradicional", 5);
+INSERT INTO Produto VALUES (DEFAULT, "Cimento", 50, 38.90, "Cimento CP-II 50kg", 1);
+INSERT INTO Produto VALUES (DEFAULT, "Tijolo", 40, 1.20, "Tijolo cerâmico 8 furos", 2);
+INSERT INTO Produto VALUES (DEFAULT, "Areia", 60, 12.99, "Areia média 20kg", 3);
+INSERT INTO Produto VALUES (DEFAULT, "Argamassa", 35, 24.75, "Argamassa AC-II 20kg", 4);
+INSERT INTO Produto VALUES (DEFAULT, "Tinta", 45, 89.90, "Tinta acrílica 3,6L", 5);
 
-INSERT INTO Venda VALUES (DEFAULT, "2026-08-01", "Venda de arroz", 1, 1, 1);
-INSERT INTO Venda VALUES (DEFAULT, "2026-08-02", "Venda de feijão", 2, 2, 2);
-INSERT INTO Venda VALUES (DEFAULT, "2026-08-03", "Venda de macarrão", 3, 3, 3);
-INSERT INTO Venda VALUES (DEFAULT, "2026-08-04", "Venda de açúcar", 4, 4, 4);
-INSERT INTO Venda VALUES (DEFAULT, "2026-08-05", "Venda de café", 5, 5, 5);
+INSERT INTO Venda VALUES (DEFAULT, "2026-08-01", "Venda de cimento", 1, 1, 1);
+INSERT INTO Venda VALUES (DEFAULT, "2026-08-02", "Venda de tijolo", 2, 2, 2);
+INSERT INTO Venda VALUES (DEFAULT, "2026-08-03", "Venda de areia", 3, 3, 3);
+INSERT INTO Venda VALUES (DEFAULT, "2026-08-04", "Venda de argamassa", 4, 4, 4);
+INSERT INTO Venda VALUES (DEFAULT, "2026-08-05", "Venda de tinta", 5, 5, 5);
 
-INSERT INTO Registro VALUES (DEFAULT, "Entregue", 1, 1, 1);
-INSERT INTO Registro VALUES (DEFAULT, "Em transporte", 2, 2, 2);
-INSERT INTO Registro VALUES (DEFAULT, "Preparando", 3, 3, 3);
-INSERT INTO Registro VALUES (DEFAULT, "Entregue", 4, 4, 4);
-INSERT INTO Registro VALUES (DEFAULT, "Em transporte", 5, 5, 5);
+INSERT INTO Registro VALUES (DEFAULT, "Entregue", 1, 1, 1, 1, 1);
+INSERT INTO Registro VALUES (DEFAULT, "Em transporte", 2, 2, 2, 2, 2);
+INSERT INTO Registro VALUES (DEFAULT, "Preparando", 3, 3, 3, 3, 3);
+INSERT INTO Registro VALUES (DEFAULT, "Entregue", 4, 4, 4, 4, 4);
+INSERT INTO Registro VALUES (DEFAULT, "Em transporte", 5, 5, 5, 5, 5);

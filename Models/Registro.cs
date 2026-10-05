@@ -10,5 +10,10 @@ namespace sigemac.Models
         public Cliente Cliente { get; set; }
         public Venda Venda { get; set; }
         public Entregador Entregador { get; set; }
+        public Produto Produto { get; set; }
+        public Fornecedor Fornecedor { get; set; }
+
+
+
     }
 }
