@@ -17,7 +17,7 @@ namespace sigemac.DAO
 
             using var con = _conexao.GetConnection();
 
-            string sql = "SELECT * FROM produto left join fornecedor on (id_forn_fk = id_forn);";
+            string sql = "SELECT * FROM produto inner join fornecedor on (id_forn_fk = id_forn);";
             using var comando = con.CreateCommand();
             comando.CommandText = sql;
 

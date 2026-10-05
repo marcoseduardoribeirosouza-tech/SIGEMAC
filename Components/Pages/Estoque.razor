@@ -1,4 +1,9 @@
 ﻿@page "/estoque"
+@rendermode InteractiveServer
+@using sigemac.Models;
+
+@inject ProdutoDAO ProDAO
+@inject FornecedorDAO FornDao
 
 <input type="checkbox" id="controle-modal" class="modal-hidden">
 
@@ -16,64 +21,36 @@
         <input type="text" placeholder="Buscar produtos...">
     </div>
 
+
+    
     <div class="grid-produtos">
-
+        @foreach (var produtos in produto)
+        {
         <div class="card">
             <div class="card-texto">
-                <span class="quantidade">50</span>
-                <h3>Porcelanato</h3>
-                <span class="preco">R$ 32,99</span>
+                <span class="quantidade">@produtos.Quantidade</span>
+                <h3>@produtos.Nome</h3>
+                <span class="preco">R$ @produtos.Preco.ToString("C")</span>
             </div>
             <button class="botao-solicitar">Solicitar material</button>
         </div>
-
-        <div class="card">
-            <div class="card-texto">
-                <span class="quantidade">300.000</span>
-                <h3>Cimentos</h3>
-                <span class="preco">R$ 11,99</span>
-            </div>
-            <button class="botao-solicitar">Solicitar material</button>
-        </div>
-
-        <div class="card">
-            <div class="card-texto">
-                <span class="quantidade">300.000</span>
-                <h3>Pedra de Calçamento</h3>
-                <span class="preco">R$ 11,99</span>
-            </div>
-            <button class="botao-solicitar">Solicitar material</button>
-        </div>
-
-        <div class="card">
-            <div class="card-texto">
-                <span class="quantidade">50</span>
-                <h3>Telha</h3>
-                <span class="preco">R$ 32,99</span>
-            </div>
-            <button class="botao-solicitar">Solicitar material</button>
-        </div>
-
-        <div class="card">
-            <div class="card-texto">
-                <span class="quantidade">300.000</span>
-                <h3>Arame</h3>
-                <span class="preco">R$ 11,99</span>
-            </div>
-            <button class="botao-solicitar">Solicitar material</button>
-        </div>
-
-        <div class="card">
-            <div class="card-texto">
-                <span class="quantidade">300.000</span>
-                <h3>Kit de Ferramentas</h3>
-                <span class="preco">R$ 199,99</span>
-            </div>
-            <button class="botao-solicitar">Solicitar material</button>
-        </div>
-
+        }
     </div>
 </div>
+
+@code {
+    private List<Produto>? produto = new();
+
+    protected override void OnInitialized()
+    {
+        CarregarProdutos();
+    }
+
+    private void CarregarProdutos()
+    {
+        produto = ProDAO.Listar();
+    }
+}
 
 @* <div class="modal-fundo">
     <div class="modal-janela">
