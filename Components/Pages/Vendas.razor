@@ -29,6 +29,13 @@
 
     <div class="custom-table-card p-4">
 
+        @if (mensagemSucesso)
+        {
+            <div class="alert alert-success" role="alert">
+                Venda cadastrada com sucesso!
+            </div>
+        }
+
         <EditForm Model="venda" OnValidSubmit="Salvar">
 
             <DataAnnotationsValidator />
@@ -184,6 +191,8 @@
     private int produtoSelecionado;
     private int entregadorSelecionado;
 
+    private bool mensagemSucesso = false;
+
 
     protected override void OnInitialized()
     {
@@ -203,7 +212,19 @@
 
         VendaDAO.Inserir(venda);
 
-        NavigationManager.NavigateTo("/vendas");
+        // Cria uma nova venda para limpar os campos
+        venda = new Venda();
+
+        // Coloca a data atual novamente
+        venda.DataRegistro = DateOnly.FromDateTime(DateTime.Today);
+
+        // Limpa os selects
+        clienteSelecionado = 0;
+        produtoSelecionado = 0;
+        entregadorSelecionado = 0;
+
+        // Mostra mensagem de sucesso
+        mensagemSucesso = true;
     }
 
 
@@ -213,3 +234,4 @@
     }
 
 }
+
